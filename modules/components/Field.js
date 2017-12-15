@@ -18,6 +18,7 @@ export default class Field extends Component {
     selectedField: PropTypes.string,
     setField: PropTypes.func.isRequired,
     renderAsDropdown: PropTypes.bool,
+    selectProps: PropTypes.object
   };
 
   constructor(props) {
@@ -141,6 +142,7 @@ export default class Field extends Component {
     let fieldSelectItems = this.buildSelectItems(fieldOptions);
     let fieldSelect = (
         <Select
+            showSearch
             dropdownAlign={dropdownPlacement ? BUILT_IN_PLACEMENTS[dropdownPlacement] : undefined}
             dropdownMatchSelectWidth={false}
             style={{ width: this.props.selectedField ? null : placeholderWidth + 36 }}
@@ -149,6 +151,7 @@ export default class Field extends Component {
             size={this.props.config.settings.renderSize || "small"}
             onChange={this.handleFieldSelect.bind(this)}
             value={this.props.selectedField || undefined}
+            {...this.props.selectProps}
         >{fieldSelectItems}</Select>
     );
 
