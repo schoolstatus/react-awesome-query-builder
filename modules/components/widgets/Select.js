@@ -10,7 +10,8 @@ const Option = Select.Option;
 export default class SelectWidget extends Component {
   static propTypes = {
     setValue: PropTypes.func.isRequired,
-    delta: PropTypes.number.isRequired
+    delta: PropTypes.number.isRequired,
+    selectProps: PropTypes.object
   };
 
   handleChange(val) {
@@ -36,6 +37,8 @@ export default class SelectWidget extends Component {
             size={size}
             value={this.props.value || undefined} //note: (bug?) null forces placeholder to hide
             onChange={this.handleChange.bind(this)}
+            showSearch
+            {...this.props.selectProps}
           >{options}
         </Select>
     );
